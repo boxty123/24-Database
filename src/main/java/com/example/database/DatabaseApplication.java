@@ -19,9 +19,9 @@ public class DatabaseApplication {
             Statement stmt = con.createStatement();
 
 
-//            String insertQuery = "INSERT INTO Book(bookid, bookname, publisher, price) " +
-//                    "VALUES (18,'이정현 공부법', '정현출판사', 13000)";
-//            stmt.executeUpdate(insertQuery);
+           String insertQuery = "INSERT INTO Book(bookid, bookname, publisher, price) " +
+                    "VALUES (18,'이정현 공부법', '정현출판사', 13000)";
+            stmt.executeUpdate(insertQuery);
 
 
 
@@ -41,6 +41,12 @@ public class DatabaseApplication {
                 System.out.println(rs.getInt(1) + "  " + rs.getString(2) +
                         "  " + rs.getString(3)+" "+rs.getInt(4));
 
+            System.out.println("\n");
+            //책 이름에 '이정현'이 들어가는 책만 검색.
+            rs= stmt.executeQuery("SELECT * FROM Book WHERE bookname like '이정현%'");
+            while (rs.next())
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) +
+                        "  " + rs.getString(3)+" "+rs.getInt(4));
 
             con.close();
 
